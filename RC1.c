@@ -4,6 +4,7 @@
 #define MAX 5
 
 void menu();
+int buscar(char especies[][50], int total, char esp[]);
 
 int main(){
     char especies[MAX][50];
@@ -37,4 +38,13 @@ void menu(){
     printf("5- evaluar capacidad del refugio\n");
     printf("6- salir\n");
     printf("opcion: ");
+}
+
+int buscar(char especies[][50], int total, char esp[]){
+    int i;
+    for(i = 0; i < total; i++){
+        if(strcmp(especies[i], esp) == 0)
+            return i;
+    }
+    return -1;
 }
