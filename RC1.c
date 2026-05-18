@@ -86,10 +86,22 @@ void registrar(char especies[][50], float pesos[], int cuidadores[], int dias[],
 
     printf("peso promedio del animal (kg): ");
     scanf("%f", &p);
+    if(p <= 0){
+        printf("el peso debe ser mayor a cero\n");
+        return;
+    }
     printf("cuidadores necesarios por animal: ");
     scanf("%d", &c);
+    if(c <= 0){
+        printf("los cuidadores deben ser mayor a cero\n");
+        return;
+    }
     printf("dias estimados de recuperacion: ");
     scanf("%d", &d);
+    if(d <= 0){
+        printf("los dias deben ser mayor a cero\n");
+        return;
+    }
 
     strcpy(especies[*total], esp);
     pesos[*total] = p;
