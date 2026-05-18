@@ -7,6 +7,7 @@ void menu();
 int buscar(char especies[][50], int total, char esp[]);
 void registrar(char especies[][50], float pesos[], int cuidadores[], int dias[], int *total);
 void mostrar(char especies[][50], float pesos[], int cuidadores[], int dias[], int total);
+void editar(char especies[][50], float pesos[], int cuidadores[], int dias[], int total);
 
 int main(){
     char especies[MAX][50];
@@ -29,6 +30,10 @@ int main(){
         scanf("%d", &op);
         if (op == 1)
             registrar(especies, pesos, cuidadores, dias, &total);
+            else if(op == 2)
+            editar(especies, pesos, cuidadores, dias, total);
+        else if(op == 4)
+            mostrar(especies, pesos, cuidadores, dias, total);
     } while(op != 6);
 
     return 0;
@@ -99,4 +104,42 @@ void mostrar(char especies[][50], float pesos[], int cuidadores[], int dias[], i
         printf("%d) %s | peso: %.2f kg | cuidadores: %d | dias recuperacion: %d\n",
                i+1, especies[i], pesos[i], cuidadores[i], dias[i]);
     }
+}
+
+void editar(char especies[][50], float pesos[], int cuidadores[], int dias[], int total){
+    char esp[50];
+    int pos, op2;
+
+    if(total == 0){
+        printf("no hay animales registrados\n");
+        return;
+    }
+
+    printf("especie a editar: ");
+    scanf(" %s", esp);
+
+    pos = buscar(especies, total, esp);
+    if(pos == -1){
+        printf("no se encontro esa especie\n");
+        return;
+    }
+
+    printf("1-especie 2-peso 3-cuidadores 4-dias\n");
+    scanf("%d", &op2);
+
+    if(op2 == 1){
+        printf("nueva especie: ");
+        scanf(" %s", especies[pos]);
+    } else if(op2 == 2){
+        printf("nuevo peso (kg): ");
+        scanf("%f", &pesos[pos]);
+    } else if(op2 == 3){
+        printf("nuevos cuidadores: ");
+        scanf("%d", &cuidadores[pos]);
+    } else if(op2 == 4){
+        printf("nuevos dias: ");
+        scanf("%d", &dias[pos]);
+    }
+
+    printf("actualizado\n");
 }
